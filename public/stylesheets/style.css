@@ -1,0 +1,142 @@
+/* hex colours---
+background:F7F8F2
+buttons:C8CEA1
+light midtone:749C75
+dark midtone:19381F
+text:130208
+*/
+
+/*  just starting the css will build on this later */
+
+
+
+:root{
+        --background: #F0F0F0;
+
+}
+
+:root.dark-mode{
+    --background: #1E1E1E;
+
+}
+
+
+
+
+
+
+body {
+  background-color: #F7F8F2;
+  font-family: Helvetica, sans-serif;
+  color: #130208;
+  margin: 0;
+  padding: 50px;
+}
+
+button {
+  padding: 14px 14px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  color: #000;
+  cursor: pointer;
+  background: #c8cea1;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.03); /*moves it up*/
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+/*copied from index.css*/
+a {
+  color: #130208;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body {margin: 0;}
+
+ul.navBar {
+  display: flex;
+  align-items: center;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  background-color: #749c75;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+
+ul.navBar li  {
+  /* float: right; */
+  margin: 0;
+}
+
+ul.navBar li:nth-child(2) {
+      margin-left: auto;
+}
+
+/* ul.navBar li:first-child {
+    margin-left: auto;
+} */
+
+ul.navBar li a {
+  display: block;
+  color: #000;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.navBar li a.active {
+  background-color: #19381F;
+}
+
+ul.navBar li a:hover:not(.active) {
+  background-color: #c8cea1;
+  color: white;
+}
+
+div.content {
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+.pfp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+}
+
+
+
+@media screen and (max-width: 900px) {
+  .mobile-container {
+    max-width: 480px;
+    background-color: #000000;
+    position: relative;
+  }
+
+  .navBar #myLinks {
+    display: none;
+    font-size: 17px;
+    display: block;
+  }
+
+  .navBar a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+
+    background-color: #04AA6D;
+    color: white;
+  }
+}

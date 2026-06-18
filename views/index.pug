@@ -1,0 +1,57 @@
+extends layout 
+block scripts 
+    link(rel='stylesheet' href='stylesheets/index.css')
+    link(rel='stylesheet' href='stylesheets/index.css')
+    link(rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' integrity='sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=' crossorigin='')
+    script(src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js' integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=' crossorigin='')
+    link(rel='stylesheet' href='https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css')
+    script(src='https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js')
+    script. 
+        window.growingSpaces = !{JSON.stringify(spaces)};
+    
+    script(src='/scripts/map.js' defer)
+
+
+block content 
+    header 
+        h1 #{title}
+    body 
+        h2 About This Site
+
+        div(id="about-container" class="containers")
+            ul
+                li This website is aimed towards helping people find spaces in Ladywood and Birmingham to grow fruit, veg and other plants.
+                li Use the map below to find a space and see what the community has planted there.
+                li Create your own listing if you have land available for community use.
+                li Visit the bulletin board to find help with clearing land, supplies for growing, or local community events.
+
+
+        
+        h2 Find a Space
+        p Click on a point on the map to find out about the space.
+        div(id="map-container")
+
+                    
+
+        
+
+        h2 What We Do   
+        div(id="info-container" class="containers")
+            p We are supporting the growing Birmingham Food Revolution to encourage locals to grow and share their own food. Through this site, we aim to support local events such as markets and help redistribute surplus food to people in need through local food banks in Ladywood.
+
+
+        div(id="external-links")
+            h3 External Links
+            br
+            br
+            p Click the links to find out more.
+            br 
+            br
+            div(class="links")
+                a(href="https://www.birmingham.gov.uk/info/50279/food_revolution") The Birmingham Food Revolution
+
+            div(class="links")
+                a(href="https://www.birmingham.gov.uk/info/50279/food_revolution/2921/growing_food") Growing Food
+
+
+        

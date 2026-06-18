@@ -1,0 +1,98 @@
+extends layout 
+
+block content 
+    h1 Growing Space Information 
+    div
+        div#placeInfo
+            h2 #{info.name}
+            ul
+                li #{info.location}
+                li #{info.hours}
+        
+        div#contactBox
+            h3 Contact
+            p Phone: #{info.phoneNum}
+            p Email: #{info.email}
+    
+    h2 What's Growing Here?
+    div#growingHere
+        div.plantType 
+            h4 Fruit
+            ul
+                each plant in info.plants
+                    if plant.type == "Fruit"
+                        li #{plant.name}
+        div.plantType
+            h4 Veg
+            ul
+                each plant in info.plants
+                    if plant.type == "Vegetable"
+                        li #{plant.name}
+        div.plantType
+            h4 Other
+            ul
+                each plant in info.plants
+                    if plant.type == "Other"
+                        li #{plant.name}
+
+    if userID == info.userID
+        div#buttonHolder
+            button#logButton Log Plant 
+            button#viewButton View My Plants 
+
+        div#logDiv.popup
+            h1 Log your Plant
+            form(action="/plotinfo/add" method="post")
+                label(for="plantName") Plant Name:
+                input#plantName(type="text" name="plantName" required)
+
+                label(for="addAmount") Amount: 
+                input#addAmount(type="text" name="addAmount" required)
+
+                label(for="plantType") Type: 
+                select#plantType(name="plantType" required)
+                    option(value="" selected disabled hidden) Select Type
+                    option(value="Fruit") Fruit 
+                    option(value="Vegetable") Vegetable
+                    option(value="Other") Other
+
+                input#logConfirm(type="submit" value="Confirm") 
+            
+            button#logClose X
+
+        div#viewDiv.popup 
+            h1 My Plants 
+            ul 
+                each plant in info.plants
+                    li #{plant.amount}x #{plant.name}
+            
+            form(action="/plotinfo/remove" method="post")
+                h2 Remove Plants
+
+                label(for="remPlant") Select Plant:
+                select#remPlant(name="remPlant" required)
+                    each plant in info.plants
+                        option(value=plant.id) #{plant.name}
+
+                label(for="remAmount") Amount:
+                input#remAmount(type="text" name="remAmount" required)
+
+                input#viewConfirm(type="submit" value="Remove")
+
+            button#viewClose X
+
+        script.
+            const logButton = document.getElementById("logButton");
+            const logDiv = document.getElementById("logDiv");
+            const logClose = document.getElementById("logClose");
+            const viewButton = document.getElementById("viewButton");
+            const viewDiv = document.getElementById("viewDiv");
+            const viewClose = document.getElementById("viewClose");
+            
+            logButton.addEventListener("click", () => {logDiv.style.display = "block"; viewDiv.style.display = "none"});
+            viewButton.addEventListener("click", () => {viewDiv.style.display = "block"; logDiv.style.display = "none"});
+            logClose.addEventListener("click", () => {logDiv.style.display = "none"});
+            viewClose.addEventListener("click", () => {viewDiv.style.display = "none"});
+
+                
+        

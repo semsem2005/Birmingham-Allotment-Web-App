@@ -1,0 +1,96 @@
+extends layout
+block scripts
+    link(rel='stylesheet' href='stylesheets/profile.css')
+block content
+    main
+        div.container
+            h1 Account Settings
+            h2 #{user.username}
+            if success
+                p Changes saved successfully! 
+            if error
+                p #{error}
+            form(action="/profile", method="POST")
+                fieldset
+                    label(for="username") Username: 
+                    input#username(
+                        type="text"
+                        name="username"
+                        value=user.username
+                    )
+                fieldset
+                    label(for="email") Email: 
+                    input#email(
+                        type="email"
+                        name="email"
+                        value=user.email
+                    )
+                fieldset
+                    label(for="currentPassword") Current Password: 
+                    input#currentPassword(
+                        type="password"
+                        name="currentPassword"
+                        placeholder="Enter current password"
+                    )
+                fieldset
+                    label(for="password") New Password: 
+                    input#password(
+                        type="password"
+                        name="password"
+                        placeholder="New password"
+                    )
+                fieldset
+                    label(for="confirmPassword") Confirm New Password: 
+                    input#confirmPassword(
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirm new password"
+                    )
+                h2 Profile
+                fieldset
+                    label(for="name") Full Name: 
+                    input#name(
+                        type="text"
+                        name="name"
+                        value=user.name
+                    )
+                fieldset
+                    label(for="gender") Gender: 
+                    select#gender(name="gender" class="dropdown")
+                        option(value="" selected=(user.gender == null)) Prefer not to say
+                        option(value="Male" selected=(user.gender === 'Male')) Male
+                        option(value="Female" selected=(user.gender === 'Female')) Female
+                        option(value="Other" selected=(user.gender === 'Other')) Other
+                fieldset
+                    label(for="bio") Bio: 
+                    textarea#bio(
+                        name="bio"
+                        rows="4"
+                        class="textbox"
+                        maxlength="512"
+                        placeholder="Tell others a bit about yourself..."
+                    ) #{user.bio}
+                //- fieldset 
+                //-     label(for="dark_mode") Dark Mode: 
+                //-     input#dark_Mode(
+                //-         type="checkbox"
+                //-         class="switch"
+                //-         name="dark_mode"
+                //-         checked=user.dark_mode
+                //-     )
+                button.btn(type="submit") Save Changes
+
+
+            div.your-plots
+            h2 Your Listings 
+            if plots && plots.length
+                ul
+                    each plot in plots
+                        li 
+                            a(href=`/plotInfo?plot=${plot.spaceid}`) #{plot.place_name}
+
+            else
+                p You haven't created any plots yet.
+
+
+            a(href='/sign-out') Sign Out
